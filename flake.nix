@@ -59,6 +59,10 @@
               deadnix.enable = true;
               flake-checker.enable = true;
             };
+            packages = [
+              pkgs.gh
+              pkgs.sapling
+            ];
           };
         };
       systems = [
