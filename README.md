@@ -1,6 +1,8 @@
 # Setup Direnv GitHub Action
 
-Sets up `direnv` with your Nix flake and exports variables from `.envrc` into `GITHUB_ENV` for subsequent workflow steps.
+Sets up `direnv` with your Nix flake and exports variables from `.envrc` into
+`GITHUB_ENV` for subsequent workflow steps. Requires Nix installed on the runner
+(e.g., Determinate Systems installer).
 
 ## Requirements
 
@@ -26,6 +28,7 @@ jobs:
         uses: shikanime-studio/setup-direnv-action@v1
         with:
           flake-url: nixpkgs#direnv
+          extra-args: --accept-flake-config
 
       - name: Use exported environment
         run: |
