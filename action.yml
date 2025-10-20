@@ -4,11 +4,20 @@ branding:
   icon: globe
   color: gray-dark
 description: Setup direnv environment
+inputs:
+  flake-url:
+    description: Nix flake URL or path to develop from
+    required: false
+    default: "."
+  extra-args:
+    description: Extra arguments to pass to `nix develop`
+    required: false
+    default: ""
 runs:
   using: composite
   steps:
     - name: Setup direnv with nix-direnv and export environment
       shell: bash
       run: |
-        nix run nixpkgs#direnv allow
-        nix run nixpkgs#direnv -- direnv export gha > "$GITHUB_ENV"
+        nix develop "${{ inputs.flake-url }}" ${{ inputs.extra-args }} --impure -c direnv allow
+        nix develop "${{ inputs.flake-url }}" ${{ inputs.extra-args }} --impure -c direnv export gha > "$GITHUB_ENV"

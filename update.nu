@@ -45,11 +45,6 @@ def update_skaffold_artifacts []: record -> record {
     | save --force .gitignore
 )
 
-# Update skaffold.yaml with nix packages
-open $"($env.FILE_PWD)/skaffold.yaml"
-| update_skaffold_artifacts
-| save --force $"($env.FILE_PWD)/skaffold.yaml"
-
 # Update workflows
 print "[workflows] Updating GitHub Actions workflows..."
 nu $"($env.FILE_PWD)/.github/workflows/update.nu"
