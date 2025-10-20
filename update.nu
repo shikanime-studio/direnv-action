@@ -15,6 +15,22 @@ def get_flake_packages []: nothing -> list {
     | sort
 }
 
+def update_skaffold_artifacts []: record -> record {
+    print "[skaffold] Updating skaffold.yaml with nix flake packages..."
+    let packages = get_flake_packages
+    print $"[skaffold] Found packages: ($packages | str join ', ')"
+    $in | upsert build.artifacts (
+        $packages | each { |pkg|
+            {
+                image: $"ghcr.io/shikanime/niximgs/($pkg)",
+                custom: {
+                    buildCommand: "./build.nu"
+                }
+            }
+        }
+    )
+}
+
 # Update gitignore
 (
     gitnr create
@@ -28,3 +44,12 @@ def get_flake_packages []: nothing -> list {
         tt:windows
     | save --force .gitignore
 )
+
+# Update workflows
+print "[workflows] Updating GitHub Actions workflows..."
+nu $"($env.FILE_PWD)/.github/workflows/update.nu"
+    | lines
+    | each { |line|
+        print $"[workflows] ($line)"
+    }
+    | ignore
