@@ -1,9 +1,9 @@
-name: setup-direnv-action
+name: direnv-action
 author: Shikanime Studio
 branding:
   icon: globe
   color: gray-dark
-description: Setup direnv environment
+description: Direnv environment
 inputs:
   flake-url:
     description: Nix flake URL or path to develop from
@@ -16,7 +16,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Setup direnv with nix-direnv and export environment
+    - name: Direnv with nix-direnv and export environment
       shell: bash
       run: |
         nix develop "${{ inputs.flake-url }}" ${{ inputs.extra-args }} --impure -c direnv allow
