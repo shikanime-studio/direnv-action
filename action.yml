@@ -19,5 +19,5 @@ runs:
     - name: Direnv with nix-direnv and export environment
       shell: bash
       run: |
-        nix develop "${{ inputs.flake-url }}" ${{ inputs.extra-args }} --impure -c direnv allow
-        nix develop "${{ inputs.flake-url }}" ${{ inputs.extra-args }} --impure -c direnv export gha > "$GITHUB_ENV"
+        nix run "${{ inputs.flake-url }}" ${{ inputs.extra-args }} direnv allow
+        nix run "${{ inputs.flake-url }}" ${{ inputs.extra-args }} direnv export gha > "$GITHUB_ENV"
