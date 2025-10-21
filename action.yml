@@ -10,7 +10,7 @@ inputs:
     required: false
     default: nixpkgs#direnv
   extra-args:
-    description: Extra arguments to pass to `nix develop`
+    description: Extra arguments to pass to `nix run`
     required: false
     default: ""
 runs:
