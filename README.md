@@ -10,8 +10,8 @@ Sets up `direnv` with your Nix flake and exports variables from `.envrc` into
 
 ## Inputs
 
-- `flake-url` (default `.`): Nix flake URL or path used by `nix develop`.
-- `extra-args` (default `""`): Extra flags for `nix develop` (e.g., `--accept-flake-config`).
+- `flake-url` (default `.`): Nix flake URL or path used by `nix run`.
+- `extra-args` (default `""`): Extra flags for `nix run` (e.g., `--accept-flake-config`).
 
 ## Usage
 
