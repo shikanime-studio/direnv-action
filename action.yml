@@ -5,21 +5,21 @@ branding:
   color: gray-dark
 description: Direnv environment
 inputs:
-  flake-url:
-    description: Nix flake URL or path to develop from
-    required: false
-    default: nixpkgs#direnv
   extra-args:
     description: Extra arguments to pass to `nix run`
     required: false
     default: ""
+  registry:
+    description: Nix registry to use
+    required: false
+    default: nixpkgs
 runs:
   using: composite
   steps:
     - name: Direnv with nix-direnv and export environment
       shell: bash
       run: |
-        nix run "${{ inputs.flake-url }}" ${{ inputs.extra-args }} -- direnv \
+        nix run "${{ inputs.registry }}#direnv" ${{ inputs.extra-args }} -- \
           allow
-        nix run "${{ inputs.flake-url }}" ${{ inputs.extra-args }} -- direnv \
+        nix run "${{ inputs.registry }}#direnv" ${{ inputs.extra-args }} -- \
           export gha > "$GITHUB_ENV"
