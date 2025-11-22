@@ -18,7 +18,6 @@ runs:
   steps:
     - env:
         DIRENV_WARN_TIMEOUT: 0
-      name: Direnv with nix-direnv and export environment
       run: |
         nix run "${{ inputs.registry }}#direnv" ${{ inputs.extra-args }} -- \
           allow
