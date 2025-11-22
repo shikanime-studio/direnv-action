@@ -54,19 +54,19 @@
             };
             gitignore = {
               enable = true;
-              enableDefaultTemplates =true;
+              enableDefaultTemplates = true;
             };
             packages = [
               pkgs.gh
               pkgs.sapling
             ];
-          treefmt = {
-            enable = true;
-            config = {
-              enableDefaultExcludes = true;
-              programs.prettier.enable = true;
+            treefmt = {
+              enable = true;
+              config = {
+                enableDefaultExcludes = true;
+                programs.prettier.enable = true;
+              };
             };
-          };
           };
         };
       systems = [
