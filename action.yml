@@ -16,10 +16,12 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Direnv with nix-direnv and export environment
-      shell: bash
+    - env:
+        DIRENV_WARN_TIMEOUT: 0
+      name: Direnv with nix-direnv and export environment
       run: |
         nix run "${{ inputs.registry }}#direnv" ${{ inputs.extra-args }} -- \
           allow
         nix run "${{ inputs.registry }}#direnv" ${{ inputs.extra-args }} -- \
           export gha > "$GITHUB_ENV"
+      shell: bash
